@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 var EntrySchema = new Schema(
   {
-    image: {type: String, required: true},
+    image_url: {type: String, required: true},
     description: {type: String},
     created_at: {type: Date, required: true},
   }
