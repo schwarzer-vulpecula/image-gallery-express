@@ -1,4 +1,4 @@
-// const Entry = require('../models/entry');
+const Entry = require('../models/entry');
 
 exports.upload_get = function (req, res){
     res.send('NOT IMPLEMENTED: Get Upload');

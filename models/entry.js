@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-var EntrySchema = new Schema(
+const EntrySchema = new Schema(
   {
     image_url: {type: String, required: true},
     description: {type: String},
