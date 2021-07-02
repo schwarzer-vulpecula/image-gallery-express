@@ -10,10 +10,9 @@ const uploadRouter = require('./routes/upload');
 const app = express();
 
 //Set up mongoose connection
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://vulpecula:quickbrownfox@cluster0.9yccg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
-var db = mongoose.connection;
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/image-gallery-express', {useNewUrlParser: true});
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
