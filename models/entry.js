@@ -9,8 +9,7 @@ const EntrySchema = new Schema(
   {
     image_url: {type: String, required: true},
     description: {type: String},
-    createdAt: {type: Date, default: Date.now},
-    expireAt: {type: Date, default: tomorrow}
+    createdAt: {type: Date, default: Date.now}
   }
 );
 
