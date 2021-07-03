@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const sjcl = require('sjcl');
 
 // Controller modules
 const uploads_controller = require('../controllers/uploads_controller');
@@ -7,19 +8,19 @@ const uploads_controller = require('../controllers/uploads_controller');
 // Multer
 const multer  = require('multer')
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now())));
   }
 })
 
 const imageFileFilter = (req, file, cb) =>{
-    if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) { // If the file uploaded is not of these types
-        return cb(null, false);
-    }
-    cb(null, true)
+  if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) { // If the file uploaded is not of these types
+      return cb(null, false);
+  }
+  cb(null, true)
 };
  
 const upload = multer({ storage: storage, fileFilter: imageFileFilter })
