@@ -28,7 +28,7 @@ const upload = multer({ storage: storage, fileFilter: imageFileFilter })
 router.get('/', uploads_controller.upload_get)
 router.post('/', upload.single('upload'), function(req, res) {
   if(!req.file) {
-    res.end("Please upload an image!"); // The upload failed
+    res.send("Please upload an image!"); // The upload failed
   }
   else {
     uploads_controller.upload_post(req, res);

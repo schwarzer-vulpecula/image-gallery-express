@@ -5,5 +5,5 @@ exports.upload_get = function (req, res){
 }
 
 exports.upload_post = function (req, res){
-  res.end('Uploaded successfully')
+  res.send('Uploaded successfully')
 }
