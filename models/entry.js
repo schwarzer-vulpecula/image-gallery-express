@@ -7,7 +7,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 
 const EntrySchema = new Schema(
   {
-    image_url: {type: String, required: true},
+    image_name: {type: String, required: true},
     description: {type: String},
     createdAt: {type: Date, default: Date.now}
   }
