@@ -14,13 +14,21 @@ const storage = multer.diskStorage({
         cb(null, file.originalname)
   }
 })
+
+const imageFileFilter = (req, file, cb) =>{
+    if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) { // If the file uploaded is not any of this file type
+        return cb(null, false);
+    }
+    cb(null, true)
+};
  
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage, fileFilter: imageFileFilter })
 
 // Routes
 router.get('/', uploads_controller.upload_get)
 router.post('/', upload.single('upload'), function(req, res) {
-  res.send("File uploaded.");
+  if(!req.file) res.end("Please upload an image!") // The upload failed
+  res.end(JSON.stringify(req.file))
 });
 
 module.exports = router;
