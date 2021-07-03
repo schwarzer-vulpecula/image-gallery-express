@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 // Controller modules
-const uploads_controller = require('../controllers/uploads_controller')
+const uploads_controller = require('../controllers/uploads_controller');
 
 // Multer
 const multer  = require('multer')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads/')
+        cb(null, 'public/uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname)
+        cb(null, file.originalname);
   }
 })
 
@@ -27,8 +27,12 @@ const upload = multer({ storage: storage, fileFilter: imageFileFilter })
 // Routes
 router.get('/', uploads_controller.upload_get)
 router.post('/', upload.single('upload'), function(req, res) {
-  if(!req.file) res.end("Please upload an image!") // The upload failed
-  res.end(JSON.stringify(req.file))
+  if(!req.file) {
+    res.end("Please upload an image!"); // The upload failed
+  }
+  else {
+    uploads_controller.upload_post(req, res);
+  }
 });
 
 module.exports = router;
