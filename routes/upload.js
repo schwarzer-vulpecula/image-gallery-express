@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 })
 
 const imageFileFilter = (req, file, cb) =>{
-    if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) { // If the file uploaded is not any of this file type
+    if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) { // If the file uploaded is not of these types
         return cb(null, false);
     }
     cb(null, true)
