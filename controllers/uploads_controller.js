@@ -5,7 +5,7 @@ exports.upload_get = function (req, res){
 }
 
 exports.upload_post = function (req, res){
-  const entry = new Entry({ image_name: req.file.filename, description: req.body.description });
+  const entry = new Entry({ image_name: req.file.filename, original_name: req.file.originalname, description: req.body.description });
   entry.save().then(() => console.log('Entry successfully created'));
   const url = '../gallery/' + req.file.filename;
   res.redirect(url)
