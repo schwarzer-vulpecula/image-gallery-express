@@ -12,7 +12,9 @@ const storage = multer.diskStorage({
     cb(null, 'public/uploads/');
   },
   filename: function (req, file, cb) {
-    cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now())));
+    const extArray = file.mimetype.split("/");
+    const extension = extArray[extArray.length - 1];
+    cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now())) + '.' + extension);
   }
 })
 
