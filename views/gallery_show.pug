@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Displaying Image
+  h4= time
+  img.image(src='../uploads/' + entry.image_name )
+  h4= entry.description
