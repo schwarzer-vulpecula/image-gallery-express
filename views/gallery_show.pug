@@ -3,5 +3,7 @@ extends layout
 block content
   h1= entry.original_name
   h4= time
-  img.image(src='../uploads/' + entry.image_name )
+  a(href=link) Show Full Size
+  br
+  img.image(src=link)
   .description= entry.description

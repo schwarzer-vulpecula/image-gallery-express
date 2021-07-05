@@ -19,7 +19,7 @@ exports.gallery_show = function (req, res){
           hour: "numeric",
           minute: "2-digit"
         });
-        res.render('gallery_show', { entry: entry, time: formattedDate });
+        res.render('gallery_show', { entry: entry, time: formattedDate, link: '../uploads/' + entry.image_name });
       }
     })
 }
