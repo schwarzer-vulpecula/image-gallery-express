@@ -1,7 +1,11 @@
 const Entry = require('../models/entry');
 
 exports.gallery_index = function (req, res){
-  res.render('gallery_index');
+  Entry.find({ public_image: true }, { image_name: 1, _id: 0 })
+    .exec(function (err, entries){
+        res.render('gallery_index', { entries: entries, uploads_path: 'uploads/', gallery_path: 'gallery/' });
+        console.log(entries);
+    });
 }
 
 exports.gallery_show = function (req, res){
