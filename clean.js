@@ -6,11 +6,11 @@ const directories = ['tmp', 'public/uploads'];
 // Delete database
 const url = "mongodb://localhost:27017/image-gallery-express";
 MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
+  if (err) throw err;
+  client.db('image-gallery-express').dropDatabase(function(err, result){
     if (err) throw err;
-    client.db('image-gallery-express').dropDatabase(function(err, result){
-        if (err) throw err;
-        client.close();
-    });
+    client.close();
+  });
 });
 
 // Delete uploads
