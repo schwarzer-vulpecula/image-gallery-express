@@ -3,6 +3,10 @@ extends layout
 block content
   h1= entry.original_name
   h4= time
+  if !entry.public_image
+    i Only people with the link can view this image
+    br
+  end
   a(href=link) Show Full Size
   br
   img.image(src=link)
