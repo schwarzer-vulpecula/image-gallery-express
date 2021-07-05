@@ -20,9 +20,11 @@
   grid-row-gap: 25px;
 }
 
+.wrapper > a {
+  display: block;
+}
+
 .wrapper > div img {
-  display: flex;
-  margin: auto;
   max-height: 200px;
   max-width: 200px;
 }
