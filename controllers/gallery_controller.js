@@ -2,6 +2,7 @@ const Entry = require('../models/entry');
 
 exports.gallery_index = function (req, res){
   Entry.find({ public_image: true }, { image_name: 1, _id: 0 })
+    .sort({ createdAt: 'desc' })
     .exec(function (err, entries){
         res.render('gallery_index', { entries: entries, uploads_path: 'uploads/', gallery_path: 'gallery/' });
         console.log(entries);
