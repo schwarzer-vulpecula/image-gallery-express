@@ -27,7 +27,7 @@ const imageFileFilter = (req, file, cb) =>{
   cb(null, true)
 };
  
-const upload = multer({ storage: storage, fileFilter: imageFileFilter })
+const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: { fileSize: 8000000 } })
 
 // Routes
 router.get('/', uploads_controller.upload_get)
