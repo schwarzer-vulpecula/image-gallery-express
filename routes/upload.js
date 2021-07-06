@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const sjcl = require('sjcl');
-const sizeOf = require('image-size');
-const fs = require('fs');
 
 // Controller modules
 const uploads_controller = require('../controllers/uploads_controller');
@@ -32,32 +30,7 @@ const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: {
 // Routes
 router.get('/', uploads_controller.upload_get)
 router.post('/', upload.single('upload'), function(req, res) {
-  let failed = false;
-  if(!req.file) {
-    // Multer did not upload because the file filter failed
-    failed = true;
-  }
-  else{
-    // Try checking for the dimensions of the image, to check whether or not the file is truly an image
-    try {
-      sizeOf('tmp/' + req.file.filename);
-    }
-    catch(err) {
-      failed = true;
-    }
-  }
-  if (failed) {
-    // The upload failed, we now need to delete the file in the tmp folder if it exists
-    if(req.file){
-      fs.unlinkSync('tmp/' + req.file.filename);
-    }
-    res.render('upload_error', { title: 'Error' });
-  }
-  else {
-    // The upload was successful, we need to move the image to the public/uploads folder
-    fs.renameSync('tmp/' + req.file.filename, 'public/uploads/' + req.file.filename);
-    uploads_controller.upload_post(req, res);
-  }
+  uploads_controller.upload_post(req, res);
 });
 
 module.exports = router;
