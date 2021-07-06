@@ -12,8 +12,12 @@ block content
     if page - 5 > 1
       a(href='../gallery?page=1') 1
       raw  | 
-      raw ...
-      raw  | 
+      if page - 5 == 2
+        a(href='../gallery?page=1') 2
+        raw  | 
+      else
+        raw ...
+        raw  | 
     else if page - 5 == 1
       a(href='../gallery?page=1') 1
       raw  | 
