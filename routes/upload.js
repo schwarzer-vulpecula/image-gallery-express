@@ -31,7 +31,7 @@ const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: {
 
 // Routes
 router.get('/', uploads_controller.upload_get)
-router.post('/', upload.single('upload'), function(req, res) {
+router.post('/', upload.single('upload'), function(req, res, next) {
   let failed = false;
   if(!req.file) {
     // Multer did not upload because the file filter failed
@@ -51,8 +51,7 @@ router.post('/', upload.single('upload'), function(req, res) {
     if(req.file){
       fs.unlinkSync('tmp/' + req.file.filename);
     }
-    res.send("Please upload an image!");
-    // We can call the next callback with an error instead, but I chose not to as this is enough for the use case
+    res.render('upload_error', { title: 'Error' });
   }
   else {
     // The upload was successful, we need to move the image to the public/uploads folder
