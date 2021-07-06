@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ strict: true });
 
 // Controller modules
 const gallery_controller = require('../controllers/gallery_controller');

@@ -25,7 +25,7 @@ exports.gallery_index = function (req, res){
       .skip((page - 1) * imagesPerPage)
       .limit(imagesPerPage)
       .exec(function (err, entries){
-          res.render('gallery_index', { title: 'Gallery', entries: entries, uploads_path: 'uploads/', gallery_path: 'gallery/', page: page, maxPage: maxPage });
+          res.render('gallery_index', { title: 'Gallery', entries: entries, uploads_path: '../uploads/', gallery_path: '../gallery/', page: page, maxPage: maxPage });
       });
   });
 }
