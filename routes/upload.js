@@ -52,6 +52,7 @@ router.post('/', upload.single('upload'), function(req, res) {
       fs.unlinkSync('tmp/' + req.file.filename);
     }
     res.send("Please upload an image!");
+    // We can call the next callback with an error instead, but I chose not to as this is enough for the use case
   }
   else {
     // The upload was successful, we need to move the image to the public/uploads folder
