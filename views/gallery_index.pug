@@ -8,44 +8,14 @@ block content
     else
       raw Prev
     raw  | 
-
-    if page - 5 > 1
-      a(href='../gallery?page=1') 1
-      raw  | 
-      if page - 5 == 2
-        a(href='../gallery?page=1') 2
-        raw  | 
-      else
+    each number in pages
+      if number == '...'
         raw ...
-        raw  | 
-    else if page - 5 == 1
-      a(href='../gallery?page=1') 1
+      else if number == page
+        b #{number}
+      else
+        a(href='../gallery?page=' + number) #{number}
       raw  | 
-
-    - var n = page - 4
-    while n < page
-      if n > 0
-        a(href='../gallery?page=' + n) #{n}
-        raw  | 
-      - n++
-
-    b  #{page}
-    raw  | 
-
-    - var n = page + 1
-    while n < page + 5
-      if n <= maxPage
-        a(href='../gallery?page=' + n) #{n}
-        raw  | 
-      - n++
-
-    if page + 5 < maxPage
-      raw ...
-      raw  | 
-    else if page + 5 == maxPage
-      a(href='../gallery?page=' + maxPage) #{maxPage}
-      raw  | 
-
     if page < maxPage
       a(href='../gallery?page=' + (page + 1)) Next
     else

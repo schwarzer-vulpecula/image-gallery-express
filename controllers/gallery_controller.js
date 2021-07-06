@@ -25,7 +25,38 @@ exports.gallery_index = function (req, res){
       .skip((page - 1) * imagesPerPage)
       .limit(imagesPerPage)
       .exec(function (err, entries){
-          res.render('gallery_index', { title: 'Gallery', entries: entries, uploads_path: '../uploads/', gallery_path: '../gallery/', page: page, maxPage: maxPage });
+        const pages = []; // This array will determine which page numbers will the view render
+        /*
+          4 page numbers from before and after the current page will be displayed, and the remaining numbers will be displayed as ...
+          Page 1 must always be displayed
+        */ 
+
+        // Display 1, 1 & 2, or 1 & ...
+        if (page - 5 == 1) { pages.push(1); }
+        else if (page - 5 > 1){
+          pages.push(1);
+          if (page - 5 == 2) { pages.push(2); }
+          else { pages.push('...'); }
+        }
+
+        // Displaying n-4 pages
+        for (let n = page - 4; n < page; n++){
+          if (n > 0) { pages.push(n); }
+        }
+
+        // Displaying current page
+        pages.push(page);
+
+        // Displaying n+4 pages
+        for (let n = page + 1; n <= page + 4; n++){
+          if (n <= maxPage) { pages.push(n); }
+        }
+
+        // Displaying the last page
+        if (page + 5 < maxPage) { pages.push('...'); }
+        else if (page + 5 == maxPage) { pages.push(maxPage); }
+
+        res.render('gallery_index', { title: 'Gallery', entries: entries, uploads_path: '../uploads/', gallery_path: '../gallery/', page: page, maxPage: maxPage, pages: pages });
       });
   });
 }
