@@ -1,7 +1,7 @@
 const Entry = require('../models/entry');
 
 exports.upload_get = function (req, res){
-  res.render('upload');
+  res.render('upload', { title: 'Upload an Image' } );
 }
 
 exports.upload_post = function (req, res){
