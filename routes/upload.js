@@ -31,7 +31,7 @@ const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: {
 
 // Routes
 router.get('/', uploads_controller.upload_get)
-router.post('/', upload.single('upload'), function(req, res, next) {
+router.post('/', upload.single('upload'), function(req, res) {
   let failed = false;
   if(!req.file) {
     // Multer did not upload because the file filter failed
