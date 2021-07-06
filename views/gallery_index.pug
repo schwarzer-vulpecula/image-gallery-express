@@ -2,6 +2,50 @@ extends layout
 
 block content
   h1= title
+  p
+    if page > 1
+      a(href='../gallery?page=' + (page - 1)) Prev
+    else
+      raw Prev
+    raw  | 
+
+    if page - 5 > 1
+      a(href='../gallery?page=1') 1
+      raw  | 
+      raw ...
+      raw  | 
+    else if page - 5 == 1
+      a(href='../gallery?page=1') 1
+      raw  | 
+
+    - var n = page - 4
+    while n < page
+      if n > 0
+        a(href='../gallery?page=' + n) #{n}
+        raw  | 
+      - n++
+
+    b  #{page}
+    raw  | 
+
+    - var n = page + 1
+    while n < page + 5
+      if n <= maxPage
+        a(href='../gallery?page=' + n) #{n}
+        raw  | 
+      - n++
+
+    if page + 5 < maxPage
+      raw ...
+      raw  | 
+    else if page + 5 == maxPage
+      a(href='../gallery?page=' + maxPage) #{maxPage}
+      raw  | 
+
+    if page < maxPage
+      a(href='../gallery?page=' + (page + 1)) Next
+    else
+      raw Next
   #content
     .wrapper
       each entry in entries
