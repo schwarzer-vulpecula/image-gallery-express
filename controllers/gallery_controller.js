@@ -1,6 +1,6 @@
 const Entry = require('../models/entry');
 const url = require('url');
-const imagesPerPage = 1; // Normally 15, currently using 1 for testing
+const imagesPerPage = 15;
 
 number_of_pages = function(images){
   if (images == 0) { 
