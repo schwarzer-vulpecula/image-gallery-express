@@ -6,6 +6,12 @@ title: Basic Information
 
 ---
 
+## Table of Contents
+- [Basic Information](./)
+- Nothing else for now
+
+# Basic Information
+
 An image gallery where people can upload images anonymously. Written in JavaScript using Express.js and Node.js. 
 
 Several key features include:
