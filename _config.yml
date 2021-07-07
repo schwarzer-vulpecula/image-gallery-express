@@ -23,7 +23,7 @@ email: schwarzer.vulpecula@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   An image gallery where people can upload images anonymously. 
   Written in JavaScript using Express.js and Node.js.
-  Uses MongoDB with Mongoose, and Pug (Jade) Templating Engine.
+  Uses MongoDB with Mongoose, and Pug (Jade) template engine.
 baseurl: "/mini-forum-rails" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
