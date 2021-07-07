@@ -18,11 +18,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: schwarzer-vulpecula.github.io 
+title: image-gallery-express
 email: schwarzer.vulpecula@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is the home page of my GitHub projects.
-baseurl: "" # the subpath of your site, e.g. /blog
+  An image gallery where people can upload images anonymously. 
+  Written in JavaScript using Express.js and Node.js.
+  Uses MongoDB with Mongoose, and Pug (Jade) Templating Engine.
+baseurl: "/mini-forum-rails" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username:  schwarzer-vulpecula
