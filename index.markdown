@@ -9,6 +9,7 @@ title: Basic Information
 ## Table of Contents
 - [Basic Information](./)
 - Nothing else for now
+- [Other Projects](https://schwarzer-vulpecula.github.io)
 
 # Basic Information
 
