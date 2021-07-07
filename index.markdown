@@ -26,6 +26,7 @@ Several things that should be noted:
 * No spam protection for the gallery
 * Intitially, I wanted to use reCAPTCHA, however, upon finding out that it will make setting up this repository harder for other people because of the secret key and the need to sign up for it, I was against this idea.
 * The database is called `image-gallery-express`
+* Production mode only removes error messages in error pages; the application will still use the same database. This can be easily changed.
 
 Version Information:
 
