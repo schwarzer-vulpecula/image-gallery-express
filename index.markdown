@@ -8,7 +8,12 @@ title: Basic Information
 
 ## Table of Contents
 - [Basic Information](./)
-- Nothing else for now
+- [Routing](./routing)
+- [Uploading](./uploading)
+- [Privacy](./privacy)
+- [Gallery](./gallery)
+- [Scripts](./scripts)
+- [Demonstration](./demo)
 - [Other Projects](https://schwarzer-vulpecula.github.io)
 
 # Basic Information
