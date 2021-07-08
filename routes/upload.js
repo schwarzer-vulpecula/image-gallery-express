@@ -6,7 +6,7 @@ const sjcl = require('sjcl');
 const uploads_controller = require('../controllers/uploads_controller');
 
 // Multer
-const multer  = require('multer')
+const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'tmp/');
