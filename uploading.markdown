@@ -21,7 +21,7 @@ title: Uploading
 
 # Uploading
 
-Uploading is the core functionality of any image gallery. Although simple in concept, there are many pitfalls that need to be avoided. Fortunately, the Multer middleware provides ways of doing this easily. Many thanks to the creator of Multer!
+Uploading is the core functionality of any image gallery. Although simple in concept, there are many pitfalls that need to be avoided. Fortunately, the Multer middleware provides ways of doing this easily. Many thanks to the creators of Multer!
 
 ## Filtering
 
@@ -79,7 +79,7 @@ exports.upload_post = function (req, res){
 }
 ```
 
-I find that checking for the dimensions of the image using another Node module called `image-size` (Many thanks to their creator!) works well. People who know about file magic bytes might think that checking for them is enough. Unfortunately, forging magic bytes is very easy to do. On the other hand, forging a file that will pass this check is not as straightforward.
+I find that checking for the dimensions of the image using another Node module called `image-size` (Many thanks to their creators!) works well. People who know about file magic bytes might think that checking for them is enough. Unfortunately, forging magic bytes is very easy to do. On the other hand, forging a file that will pass this check is not as straightforward.
 
 One thing that I know by doing this is that it is theoretically possible to upload an image of a type that is not included in the Multer filter (png, jpg, or gif only). It just has to pass the image size check, and named with a file extension that is accepted. Based on my observations, this is not a big problem as the file uploaded will very likely be an image anyway.
 
