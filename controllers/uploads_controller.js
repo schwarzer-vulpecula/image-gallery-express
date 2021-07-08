@@ -38,7 +38,6 @@ exports.upload_post = function (req, res){
     // Create and save a new entry
     const entry = new Entry({ image_name: req.file.filename, original_name: squish(req.file.originalname), description: squish(req.body.description), public_image: req.body.public_image });
     entry.save().then(() => console.log('Entry successfully created'));
-    const url = '../gallery/' + req.file.filename;
-    res.redirect(url);
+    res.redirect('../gallery/' + req.file.filename);
   }
 }
