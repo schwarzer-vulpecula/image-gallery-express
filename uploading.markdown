@@ -105,7 +105,7 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     const extArray = file.mimetype.split("/");
     const extension = extArray[extArray.length - 1];
-    cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now())) + '.' + extension);
+    cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now() + Math.random())) + '.' + extension);
   }
 })
 
