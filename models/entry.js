@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-
 const EntrySchema = new Schema(
   {
     image_name: {type: String, required: true},
