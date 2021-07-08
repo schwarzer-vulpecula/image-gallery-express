@@ -25,8 +25,6 @@ To ensure this level of privacy, links to images must be unique and unguessable 
 Fortunately, the SJCL (Stanford JavaScript Crypto Library) allows for easy hashing. Many thanks to the developers and maintainers!
 
 ```js
-const express = require('express');
-const router = express.Router();
 const sjcl = require('sjcl');
 
 // Multer
@@ -38,6 +36,7 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     const extArray = file.mimetype.split("/");
     const extension = extArray[extArray.length - 1];
+    // Hashing filename with current time and a random number
     cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now() + Math.random())) + '.' + extension);
   }
 })
