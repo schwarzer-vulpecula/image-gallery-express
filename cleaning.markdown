@@ -52,4 +52,4 @@ for (const directory of directories) {
 }
 ```
 
-When Node runs this script, the database will be completely deleted, and all files (except for the `readme.txt`) inside the `tmp` and `public/uploads` folders will be deleted. Rather than having to manually delete all uploads from the folders and typing `db.dropDatabase()` in the MongoDB shell ever time I needed a full reset, running this script was all that I needed to. This was very helpful during development.
+When Node runs this script, the database will be completely deleted, and all files (except for the `readme.txt`) inside the `tmp` and `public/uploads` folders will be deleted. Rather than having to manually delete all uploads from the folders and typing `db.dropDatabase()` in the MongoDB shell ever time I needed a full reset, running this script was all that I needed to do. This was very helpful during development.
