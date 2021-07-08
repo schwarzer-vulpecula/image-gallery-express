@@ -86,3 +86,34 @@ One thing that I know by doing this is that it is theoretically possible to uplo
 Below is a GIF showcasing this functionality.
 
 ![Uploading Faulty Files](./uploading-faulty-files.gif)
+
+## Storage
+
+Notice how there are actually two directories responsible for uploads. Both the `tmp` and `public/uploads` folders will store the files being uploaded. All files will first be uploaded to the `tmp` folder for security, as that directory is not open for browsing. Once the file is confirmed to be a proper image, it will be moved to the `public/uploads` folder, as you may have seen in the code snippets from the previous section. Multer will only ever upload to the `tmp` folder, and it is up to the controller to move it to the `public/uploads` folder. The `destination` property of the object being passed to the Multer disk storage reflects this.
+
+```js
+// routes/upload.js
+
+const sjcl = require('sjcl');
+
+// Multer
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'tmp/');
+  },
+  filename: function (req, file, cb) {
+    const extArray = file.mimetype.split("/");
+    const extension = extArray[extArray.length - 1];
+    cb(null, sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(file.originalname + Date.now())) + '.' + extension);
+  }
+})
+
+const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: { fileSize: 8000000 } })
+```
+
+Notice how the file will not be its original name once uploaded. This is to prevent overwritting, as well as for privacy, which will be further explained in the [privacy](./privacy) section. The reason why the SJCL module is used is also explained there.
+
+One important thing to note is that the file extension must be kept. This is so that the MIME type when attempting to view the image in full size will not be an octet stream, which would have prompted the user if they would like to download the image. This is very intrusive.
+
+## Entries
