@@ -12,7 +12,7 @@ title: Routing
 - [Uploading](./uploading)
 - [Privacy](./privacy)
 - [Gallery](./gallery)
-- [Scripts](./scripts)
+- [Cleaning](./cleaning)
 - [Demonstration](./demo)
 - [Other Projects](https://schwarzer-vulpecula.github.io)
 
