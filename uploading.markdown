@@ -89,7 +89,7 @@ Below is a GIF showcasing this functionality.
 
 ## Storage
 
-Notice how there are actually two directories responsible for uploads. Both the `tmp` and `public/uploads` folders will store the files being uploaded. All files will first be uploaded to the `tmp` folder for security, as that directory is not open for browsing. Once the file is confirmed to be a proper image, it will be moved to the `public/uploads` folder, as you may have seen in the code snippets from the previous section. Multer will only ever upload to the `tmp` folder, and it is up to the controller to move it to the `public/uploads` folder. The `destination` property of the object being passed to the Multer disk storage reflects this.
+Notice how there are actually two directories responsible for uploads. Both the `tmp` and the `public/uploads` folders will store the uploaded files. All files will first be uploaded to the `tmp` folder for security, as that directory is not open for browsing. Once the file is confirmed to be a proper image, it will be moved to the `public/uploads` folder, as you may have seen in the code snippets from the previous section. Multer will only ever upload to the `tmp` folder, and it is up to the controller to move it to the `public/uploads` folder. The `destination` property of the object being passed to the Multer disk storage reflects this.
 
 ```js
 // routes/upload.js
@@ -117,3 +117,44 @@ Notice how the file will not be its original name once uploaded. This is to prev
 One important thing to note is that the file extension must be kept. This is so that the MIME type when attempting to view the image in full size will not be an octet stream, which would have prompted the user if they would like to download the image. This is very intrusive.
 
 ## Entries
+
+As images uploaded will also come with additional data like descriptions, it makes sense to have a database record that will tie them all together. I decided to use MongoDB to store records relating to uploads. As I was used to working with ORMs and ODMs, I decided to use Mongoose (Many thanks to their developers!). Mongoose makes handling models very easy.
+
+```js
+// models/entry.js
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const EntrySchema = new Schema(
+  {
+    image_name: {type: String, required: true},
+    original_name: {type: String, required: true},
+    description: {type: String},
+    public_image: {type: Boolean, default: false},
+    createdAt: {type: Date, default: Date.now}
+  }
+);
+
+module.exports = mongoose.model('Entry', EntrySchema);
+```
+
+```js
+// controllers/uploads_controller.js
+const Entry = require('../models/entry');
+const fs = require('fs');
+
+const squish = function (string){
+  return string.replace(/\s+/g,' ').trim();
+}
+
+exports.upload_post = function (req, res){
+  // Other code relating to file checks goes here
+  // Create and save a new entry
+  const entry = new Entry({ image_name: req.file.filename, original_name: squish(req.file.originalname), description: squish(req.body.description), public_image: req.body.public_image });
+  entry.save().then(() => console.log('Entry successfully created'));
+  res.redirect('../gallery/' + req.file.filename);
+}
+```
+
+Now images are tied together with their descriptions, upload date, and public status. This will be helpful for the gallery display. Notice how user inputs, including the file's original name, are cleaned of superflous whitespaces. The function responsible could be moved to a separate module, but since this is the only module that is currently using it, I see no reason to move it yet.
