@@ -118,7 +118,7 @@ One important thing to note is that the file extension must be kept. This is so 
 
 ## Entries
 
-As images uploaded will also come with additional data like descriptions, it makes sense to have a database record that will tie them all together. I decided to use MongoDB to store records relating to uploads. As I was used to working with ORMs and ODMs, I decided to use Mongoose (Many thanks to their developers!). Mongoose makes handling models very easy.
+As images uploaded will also come with additional data like descriptions, it makes sense to have database records that will tie them all together. I decided to use MongoDB to store records relating to uploads. As I was used to working with ORMs and ODMs, I decided to use Mongoose (Many thanks to their developers!). Mongoose makes handling models very easy.
 
 ```js
 // models/entry.js
@@ -157,4 +157,4 @@ exports.upload_post = function (req, res){
 }
 ```
 
-Now images are tied together with their descriptions, upload date, and public status. This will be helpful for the gallery display. Notice how user inputs, including the file's original name, are cleaned of superflous whitespaces. The function responsible could be moved to a separate module, but since this is the only module that is currently using it, I see no reason to move it yet.
+Now images are tied together with their descriptions, upload date, and public status. This will be helpful for the gallery display. Notice how superflous whitespaces in user inputs, including the file's original name, will be removed. The function responsible could be moved to a separate module, but since this is the only module that is currently using it, I see no reason to move it yet.
