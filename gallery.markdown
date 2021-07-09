@@ -18,6 +18,8 @@ title: Gallery
 
 # Gallery
 
+![Images Per Page](./images-per-page.png)
+
 Not all images are displayed in the gallery immediately, because the gallery is separated into pages. Only 15 are ever displayed per page. The page functionality was done using query parameters.
 
 ```js
