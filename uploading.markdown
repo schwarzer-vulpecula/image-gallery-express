@@ -158,3 +158,7 @@ exports.upload_post = function (req, res){
 ```
 
 Now images are tied together with their descriptions, upload date, and public status. This will be helpful for the gallery display. Notice how superflous whitespaces in user inputs, including the file's original name, will be removed. The function responsible could be moved to a separate module, but since this is the only module that is currently using it, I see no reason to move it yet.
+
+Below is a GIF showcasing this whitespace removal function.
+
+![Whitespace Removal](./whitespace-removal.gif)
