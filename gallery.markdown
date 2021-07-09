@@ -56,7 +56,7 @@ exports.gallery_index = function (req, res){
 }
 ```
 
-Notice how the database query to populate the gallery will only search for 15 entries, rather than all entries. The results will only have the image name, as that is the only property needed to display the image, as well as providing a link to the details page, where every property will be displayed there instead. It is important to never query more than what is needed, as that will slow the application down. Also, default values are placed in case the query parameter is invalid or empty.
+Notice how the database query to populate the gallery will only search for 15 entries, rather than all entries. The results will only have the image name, as that is the only property needed to display the image, as well as providing a link to the details page, where every property will be displayed there instead. **It is important to never query more than what is needed, as that will slow the application down.** Also, default values are placed in case the query parameter is invalid or empty.
 
 Since images are separated into pages, the view will also need to provide a way for the user to change pages. The view should be able dynamically render the page buttons based on how many pages there are, and although the view can be programmed to do this, it is better to do most of it in the controller. Programming in the template engine should be avoided.
 

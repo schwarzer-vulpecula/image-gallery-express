@@ -43,7 +43,7 @@ const imageFileFilter = (req, file, cb) =>{
 const upload = multer({ storage: storage, fileFilter: imageFileFilter, limits: { fileSize: 8000000 } })
 ```
 
-The `fileFilter` and `limits` properties of the object we pass into Multer will place constraints on the files that can be uploaded. `8000000` is in bytes, which equals to 8 megabytes. Files are also only accepted based on their extensions. However, this filter by extension is not enough as changing a file extension is very easy to do. **File extensions can never be relied on for security**. More advanced checks will need to be done, and I decided that the controller should do it.
+The `fileFilter` and `limits` properties of the object we pass into Multer will place constraints on the files that can be uploaded. `8000000` is in bytes, which equals to 8 megabytes. Files are also only accepted based on their extensions. However, this filter by extension is not enough as changing a file extension is very easy to do. **File extensions can never be relied on for security.** More advanced checks will need to be done, and I decided that the controller should do it.
 
 ```js
 // controllers/uploads_controller.js
